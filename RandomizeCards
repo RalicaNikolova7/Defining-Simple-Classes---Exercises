@@ -1,0 +1,59 @@
+namespace RandomizeCards;
+
+public class Card
+{
+    public string Face { get; set; }
+    public string Suite { get; set; }
+
+    public Card(string face, string suite)
+    {
+        Face = face;
+        Suite = suite;
+    }
+
+    public void Print()
+    {
+        Console.WriteLine($"{Face} of {Suite}");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        string[] faces = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "J", "Q", "K" };
+        string[] suites = { "Spades", "Diamonds", "Clubs", "Hearts" };
+
+        List<Card> deck = new List<Card>();
+
+        foreach (var face in faces)
+        {
+            foreach (var suite in suites)
+            {
+                deck.Add(new Card(face, suite));
+            }
+        }
+        
+        Shuffle(deck);
+        
+        foreach (var card in deck)
+        {
+            card.Print();
+        }
+    }
+
+    public static void Shuffle(List<Card> deck)
+    {
+        Random rng = new Random();
+        int n = deck.Count;
+
+        for (int i = n - 1; i > 0; i--)
+        {
+            int j = rng.Next(i + 1);
+            
+            Card temp = deck[i];
+            deck[i] = deck[j];
+            deck[j] = temp;
+        }
+    }
+}
