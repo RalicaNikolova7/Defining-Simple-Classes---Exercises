@@ -1,0 +1,40 @@
+using System.Text;
+
+namespace ClassCard;
+
+public class Card
+{
+    public string Face { get; set; } 
+    public string Suite { get; set; }
+    
+    public Card(string face, string suite)
+    {
+        Face = face;
+        Suite = suite;
+    }
+
+    public void Print()
+    {
+        Console.WriteLine($"{Face} {Suite}");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+      
+        List<Card> cards = new List<Card>
+        {
+            new Card("A", "Spades"),
+            new Card("J", "Diamonds"),
+            new Card("Q", "Clubs"),
+            new Card("10", "Hearts")
+        };
+
+        foreach (var card in cards)
+        {
+            card.Print();
+        }
+    }
+}
