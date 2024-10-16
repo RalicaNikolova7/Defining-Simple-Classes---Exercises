@@ -1,0 +1,31 @@
+namespace Dates;
+public class DateCounter
+{
+    public int CalculateDifference(string date1, string date2)
+    {
+        var date1Arr = date1.Split("/").Select(int.Parse).ToArray();
+
+        DateTime dateTime1 = new DateTime(date1Arr[0], date1Arr[1], date1Arr[2]);
+
+        var date2Arr = date2.Split("/").Select(int.Parse).ToArray();
+
+        DateTime dateTime2 = new DateTime(date2Arr[0], date2Arr[1], date2Arr[2]);
+
+        return Math.Abs((dateTime1 - dateTime2).Days);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        DateCounter dateCounter = new DateCounter();
+
+        string date1 = Console.ReadLine();
+        string date2 = Console.ReadLine();
+        int difference = dateCounter.CalculateDifference(date1, date2);
+
+        Console.WriteLine(difference);
+    }
+}
+
